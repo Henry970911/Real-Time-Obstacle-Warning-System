@@ -1,0 +1,11 @@
+﻿SLIDE_COUNT=58
+01: Winbond W25N02 | NAND Flash | ���鱱��P���ҹ�@
+02: 01 | ���G�i�� | 02 | 03 | 04 | �t�ά[�c�P�Ҳճ]�p | ���鱱��Ҳճ]�p | �ؿ� | �i�����Ҵ��ն��� | 05 | W25N02KV Command Flow
+03: ���G�i��
+04: Single Page Read/Program | Power on | Reset (66h + 99h) | Erase Block 128KB (D8h) | Check SR3[2] = E_Fail ? | Compare Page 0 Data (Expect = 0xAA pattern ?) | Print Error Byte Index | Erase Block 128KB (D8h) | Finish Test | Print ECC Result | Load Program Data (02h) | Program Execute (10h) | Page Data Read (13h) | Read Data (03h)
+05: Single Page Read/Program
+06: Single Page Read/Program
+07: ���鱱��Ҳճ]�p
+08: W25N02KV | QFN8 WSON8 | �N���y | (6X8) | STM32H745I-DISCO | �}�o�u��
+09: �D�q���P�B��C�q�T | ( Serial Peripheral Interface, SPI )
+10: NAND Command | Bit Address | Dummy / Wait | NAND Data | SPI (Serial Peripheral Interface) �V Half Duplex of SPI with W25N02KV | 128 KB Block Erase (D8h)

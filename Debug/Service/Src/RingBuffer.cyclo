@@ -1,0 +1,6 @@
+../Service/Src/RingBuffer.c:23:6:RingBuffer_Init	2
+../Service/Src/RingBuffer.c:42:6:RingBuffer_IsFull	2
+../Service/Src/RingBuffer.c:59:6:RingBuffer_IsEmpty	2
+../Service/Src/RingBuffer.c:76:10:RingBuffer_GetCount	2
+../Service/Src/RingBuffer.c:103:6:RingBuffer_ReadByte	4
+../Service/Src/RingBuffer.c:139:6:RingBuffer_WriteByte	3

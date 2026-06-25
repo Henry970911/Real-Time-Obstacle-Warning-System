@@ -1,0 +1,16 @@
+../Core/Src/freertos.c:355:6:MX_FREERTOS_Init	8	static
+../Core/Src/freertos.c:428:6:StartDefaultTask	16	static
+../Core/Src/freertos.c:466:6:StartSensorTask	72	static
+../Core/Src/freertos.c:790:13:WarningTask_LogThrottled	24	static
+../Core/Src/freertos.c:834:6:StartWarningTask	56	static
+../Core/Src/freertos.c:1183:29:WarningTask_ConvertToSystemLevel	24	static
+../Core/Src/freertos.c:1239:6:StartCommunicationTask	88	static
+../Core/Src/freertos.c:1294:13:Communication_UART_RxStart	16	static
+../Core/Src/freertos.c:1333:6:HAL_UARTEx_RxEventCallback	40	static,ignoring_inline_asm
+../Core/Src/freertos.c:1392:13:Communication_ReadLine	24	static
+../Core/Src/freertos.c:1455:13:SensorTask_LogErrorThrottled	24	static
+../Core/Src/freertos.c:1495:13:SensorTask_LogReconnectTryThrottled	40	static
+../Core/Src/freertos.c:1536:13:SensorTask_LogReconnectFailThrottled	56	static
+../Core/Src/freertos.c:1578:13:SensorTask_ResetReconnectLogThrottle	4	static
+../Core/Src/freertos.c:1600:13:SensorTask_TryReconnect	24	static
+../Core/Src/freertos.c:1760:13:SensorTask_HandleSensorError	24	static

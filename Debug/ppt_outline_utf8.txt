@@ -1,0 +1,59 @@
+﻿SLIDE_COUNT=58
+01: Winbond W25N02 | NAND Flash | 韌體控制與驗證實作
+02: 01 | 成果展示 | 02 | 03 | 04 | 系統架構與模組設計 | 韌體控制模組設計 | 目錄 | 進階驗證測試項目 | 05 | W25N02KV Command Flow
+03: 成果展示
+04: Single Page Read/Program | Power on | Reset (66h + 99h) | Erase Block 128KB (D8h) | Check SR3[2] = E_Fail ? | Compare Page 0 Data (Expect = 0xAA pattern ?) | Print Error Byte Index | Erase Block 128KB (D8h) | Finish Test | Print ECC Result | Load Program Data (02h) | Program Execute (10h) | Page Data Read (13h) | Read Data (03h)
+05: Single Page Read/Program
+06: Single Page Read/Program
+07: 韌體控制模組設計
+08: W25N02KV | QFN8 WSON8 | 燒錄座 | (6X8) | STM32H745I-DISCO | 開發工具
+09: 主從式同步串列通訊 | ( Serial Peripheral Interface, SPI )
+10: NAND Command | Bit Address | Dummy / Wait | NAND Data | SPI (Serial Peripheral Interface) – Half Duplex of SPI with W25N02KV | 128 KB Block Erase (D8h)
+11: ARDUINO® connectors (CN2, CN3, CN6, and CN7) | W25N02 Pinout Table
+12: W25N02 Pinout Table | W25N02KV Pad Assignments, 8-pad WSON 8x6-mm (Package Code ZE)
+13: W25N02 | Function | STM32 Pin | Function | /CS | Chip Select | CN | 4-10 | (D10) | SPI5_NSS (GPIO In/Out) | DO(IO1) | MISO (Data Out) | CN4-12 (D12) | SPI5_MISO
+14: STM32Cube MCU Package for STM32H7
+15: STM32 | USART3 Setting
+16: STM32 | SPI2 Setting
+17: STM32 | SPI CS Setting ( Pin PB4 )
+18: 測試模組示意圖
+19: 系統架構與模組設計
+20: Driver Layer | Winbond W25N02 SPI Nand Command Set | JEDEC ID, Device Reset, Enable Reset, Reset Device | Write Enable / Disable | , Write / Read Status Register | 128KB Block Erase, Load Program Data, Program Execute, Page Data Read, Read Data | Service Layer | Combines low-level driver commands into high-level test services | Reset service / Read JEDEC ID service | BlockErase | service / Protect service | Read service / Program service | Status Register service | /
+21: SPI NAND | 進階驗證
+22: 進階驗證測試項目 | Endurance Test | 驗證 | Flash Block | 在規格壽命範圍內 | ( | W25N02KV : 60,000 P/E Cycles | ) | 是否穩定 | . | 檢查是否出現 | Bit Flip | 或 | ECC Error
+23: Endurance Test (Full Block 64 Pages P/E Cycle 60,000) | Compare Page Data (Expect = 0xAA pattern ?) | Select Valid Block from BBT | Power on | Reset (66h + 99h) | Load Program Data (02h) | Program Execute (10h) | W25N02KV P/E Cycle 60,000 | -------- | - Cycle Loop Start 0 ~ | 100 | ,000 | ------- | --
+24: Endurance Test (Full Block 64 Pages P/E Cycle 60,000)
+25: Endurance Test (Full Block 64 Pages P/E Cycle 100,000)
+26: Endurance Test (Full Block 64 Pages P/E Cycle 60,000)
+27: Factory Invalid Block Scan | Power on | Next Block | Mark as Valid | Mark as Invalid | All Block Scan | Finish Scan | Reset (66h + 99h) | Scan : 8 ~ 2043 Block | Skip  : 0 ~ 7 & 2044 ~ 2047 | Page Data Read (13h) | Read Data (03h) | Main[0], Spare[0] != 0xFF | True
+28: Factory Bad Block Scan
+29: Single Page Program/Read (Random Load Program) | Power on | Reset (66h + 99h) | Erase Block 128KB (D8h) | Check SR3[2] = E_Fail ? | Compare Page 0 Data (Expect = 0xAA pattern ?) | Print Error Byte Index | Erase Block 128KB (D8h) | Finish Test | Print ECC Result | Random Load Program (84h) | Program Execute (10h) | Page Data Read (13h) | Read Data (03h)
+30: Single Page Read | / | Program (Random Load Program)
+31: Single Page Read | / | Program (Random Load Program)
+32: Single Page Program | / | Read (Multiple Pattern) | Power on | Reset (66h + 99h) | Erase Block 128KB (D8h) | Check SR3[2] = E_Fail ? | Compare Page 0 Data (Expect = 0xAA pattern ?) | Print Error Byte Index | Erase Block 128KB (D8h) | Finish Test | Print ECC Result | Load Program Data (02h) | Program Execute (10h)
+33: Single Page Program/Read (Multiple Pattern)
+34: Single Page Program/Read (Multiple Pattern)
+35: Device Reset (FFh) | [/CS] Low | ：啟動 | SPI | 指令通訊 | [DI(IO0)] : | 發送 | FFh | ( | Device Reset ) | [/CS] High | : | 結束 | SPI
+36: Enable Reset (66h) | [/CS] Low | : | 啟動 | SPI | 通訊 | [DI (IO0)] | 發送 | 66h | ( Enable Reset ) | [/CS] High | : | 結束第一階段通訊 | 等待至少
+37: Reset Device (99h) | [/CS] Low | : | 啟動 | SPI | 通訊 | [DI (IO0)] | 發送 | 99h | ( | Reset Device ) | [/CS] High | : | 結束第二階段通訊並啟動重置
+38: Read JEDEC ID (9Fh) | [/CS] Low | : | 啟動 | SPI | 指令通訊 | [DI (IO0)] | 發送指令 | 9Fh ( Read JEDEC ID ) | [CLK] | 傳送 | 8 | 個 | Dummy Clocks
+39: Read Status Register (0Fh / 05h)
+40: Read Status Register (0Fh / 05h) | [/CS] Low | : | 啟動 | SPI | 指令通訊 | [DI (IO0)] | 發送指令 | (0x0F | 或 | 0x05) | : | 讀取狀態暫存器指令 | 05h ( Read Status Register ) :
+41: Write Status Register (1Fh / 01h)
+42: Write Status Register (1Fh / 01h) | [/CS] Low | : | 啟動 | SPI | 指令通訊 | [DI (IO0)] | 發送指令 | 01h : Lenacy | ，僅寫入 | SR1 | 01F : Enhanced | ，可選擇 | SR1 ~ SR3
+43: Write Enable (06h) | [/CS] Low | : | 啟動 | SPI | 指令通訊 | [DI (IO0)] | 發送指令 | 06h | 僅發送 | 06h (1 Bytes) | ，不附帶 | Address / Data | 3. [/CS] High
+44: Write Disable (04h) | [/CS] Low | : | 啟動 | SPI | 指令通訊 | [DI (IO0)] | 發送指令 | 04h | 僅發送 | 04h (1 Bytes) | ，不附帶 | Address / Data | 3. [/CS] High
+45: 128KB Block Erase (D8h)
+46: 128KB Block Erase (D8h) | [/CS] Low | : | 啟動 | SPI | 指令通訊 | [Write Enable (06h)] : | 須先執行 | Write Enable | ，否則無法進行 | Block Erase | [DI (IO0)] | 發送指令 | D8h
+47: Load Program Data (02h) | / | Random Load Program Data (84h)
+48: Load Program Data (02h) | [Write Enable] : | 必須先設定 | WEL = 1 | ，否則 | NAND | 不接受寫入指令 | [/CS] Low | : | 啟動 | SPI | 指令通訊 | [DI(IO0)] | 發送指令
+49: Random Load Program Data (84h) | [Write Enable] : | 必須先設定 | WEL = 1 | ，否則 | NAND | 不接受寫入指令 | [/CS] Low | : | 啟動 | SPI | 指令通訊 | [DI(IO0)] | 發送指令
+50: Program Execute (10h) | [/CS] Low | : | 啟動 | SPI | 指令通訊 | [DI (IO0)] | 發送指令 | 10h | ( | Program Execute ) | [DI (IO0)] | 傳送 | Page Address [23:0]
+51: Page Data Read (13h) | [/CS] Low | : | 啟動 | SPI | 指令通訊 | [DI (IO0)] | 發送指令 | 13h | ( | Page Data Read ) | [DI (IO0)] | 傳送 | Page Address [23:0]
+52: Read Data (03h) | - Buffer Read Mode (BUF = 1) | [/CS] Low | : | 啟動 | SPI | 傳輸 | [DI (IO0)] | 發送指令 | 03h | ( | Read Data ) | [DI (IO0)] | 發送
+53: Read Data (03h) - Sequential Read Mode (BUF = 0) | [/CS] Low | : | 啟動 | SPI | 傳輸 | [DI (IO0)] | 發送 | 03h | ( | Read Data ) | [DI (IO0)] | 發送 | 24
+54: Fast Read (0Bh) | – | Buffer Read Mode (BUF = 1) | [/CS] Low | ：啟動 | SPI | 傳輸 | [DI (IO0)] | 發送指令碼 | 0Bh ( Fast Read ) | [DI (IO0)] | 傳送 | Column Address [15:0] : | 指定
+55: Fast Read (0Bh) – Sequential Read Mode (BUF = 0) | [/CS] Low | : | 啟動 | SPI | 傳輸 | [DI (IO0)] | 發送 | 0Bh | ( | Fast Read ) | [DI (IO0)] | 傳送 | Column Address [15:0]
+56: Fast Read with 4-Byte Address (0Ch) | – Buffer Read Mode (BUF = 1) | [/CS] Low | : | 啟動 | SPI | 傳輸 | [DI (IO0)] | 發送 | 0Ch ( Fast Read with 4-byte Address ) | [DI (IO0)] | 傳送 | Column Address [15:0] | :
+57: Fast Read with 4-Byte Address (0Ch) - Sequential Read Mode (BUF = 0) | [/CS] Low | : | 啟動 | SPI | 傳輸 | [DI (IO0)] | 發送 | 0Ch | ( | Fast Read with 4-Byte Address ) | [DI (IO0)] | 傳送 | Column Address [15:0] (
+58: 感謝面試官的聆聽

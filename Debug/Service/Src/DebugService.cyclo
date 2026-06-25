@@ -1,0 +1,6 @@
+../Service/Src/DebugService.c:23:17:Debug_GetFreeSpace	2
+../Service/Src/DebugService.c:47:13:WriteBuffer	5
+../Service/Src/DebugService.c:94:6:Debug_Init	1
+../Service/Src/DebugService.c:105:6:Debug_WriteRaw	1
+../Service/Src/DebugService.c:121:6:Debug_Print	3
+../Service/Src/DebugService.c:154:6:Debug_Process	7

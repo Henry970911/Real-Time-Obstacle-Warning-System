@@ -1,0 +1,6 @@
+../Service/Src/DebugService.c:23:17:Debug_GetFreeSpace	4	static
+../Service/Src/DebugService.c:47:13:WriteBuffer	24	static,ignoring_inline_asm
+../Service/Src/DebugService.c:94:6:Debug_Init	4	static
+../Service/Src/DebugService.c:105:6:Debug_WriteRaw	16	static
+../Service/Src/DebugService.c:121:6:Debug_Print	144	static
+../Service/Src/DebugService.c:154:6:Debug_Process	16	static

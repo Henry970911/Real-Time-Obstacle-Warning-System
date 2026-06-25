@@ -1,0 +1,12 @@
+../Service/Src/SystemHealthService.c:24:6:SystemHealth_Init	8	static
+../Service/Src/SystemHealthService.c:38:6:SystemHealth_Reset	8	static
+../Service/Src/SystemHealthService.c:57:6:SystemHealth_GetSnapshot	16	static
+../Service/Src/SystemHealthService.c:79:6:SystemHealth_RecordSensorReadFail	4	static
+../Service/Src/SystemHealthService.c:94:6:SystemHealth_RecordSensorDataReadyTimeout	4	static
+../Service/Src/SystemHealthService.c:109:6:SystemHealth_RecordSensorReconnect	4	static
+../Service/Src/SystemHealthService.c:124:6:SystemHealth_RecordSensorReconnectFail	4	static
+../Service/Src/SystemHealthService.c:139:6:SystemHealth_RecordI2cError	4	static
+../Service/Src/SystemHealthService.c:154:6:SystemHealth_RecordI2cTimeout	4	static
+../Service/Src/SystemHealthService.c:169:6:SystemHealth_RecordQueueOverflow	4	static
+../Service/Src/SystemHealthService.c:184:6:SystemHealth_RecordUartRxOverflow	4	static
+../Service/Src/SystemHealthService.c:198:6:SystemHealth_RecordUartTxBusy	4	static

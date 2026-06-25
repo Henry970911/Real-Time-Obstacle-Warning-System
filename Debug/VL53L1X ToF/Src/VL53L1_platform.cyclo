@@ -1,0 +1,13 @@
+../VL53L1X ToF/Src/VL53L1_platform.c:45:17:VL53L1X_I2C_GetTickSafe	2
+../VL53L1X ToF/Src/VL53L1_platform.c:73:13:VL53L1X_I2C_LogReadErrorThrottled	3
+../VL53L1X ToF/Src/VL53L1_platform.c:107:13:VL53L1X_I2C_LogWriteErrorThrottled	3
+../VL53L1X ToF/Src/VL53L1_platform.c:136:8:VL53L1_WriteMulti	2
+../VL53L1X ToF/Src/VL53L1_platform.c:167:8:VL53L1_ReadMulti	2
+../VL53L1X ToF/Src/VL53L1_platform.c:192:8:VL53L1_WrByte	1
+../VL53L1X ToF/Src/VL53L1_platform.c:210:8:VL53L1_WrWord	1
+../VL53L1X ToF/Src/VL53L1_platform.c:233:8:VL53L1_WrDWord	1
+../VL53L1X ToF/Src/VL53L1_platform.c:254:8:VL53L1_RdByte	1
+../VL53L1X ToF/Src/VL53L1_platform.c:272:8:VL53L1_RdWord	2
+../VL53L1X ToF/Src/VL53L1_platform.c:302:8:VL53L1_RdDWord	2
+../VL53L1X ToF/Src/VL53L1_platform.c:331:8:VL53L1_WaitMs	3
+../VL53L1X ToF/Src/VL53L1_platform.c:353:6:VL53L1_HardReset	1

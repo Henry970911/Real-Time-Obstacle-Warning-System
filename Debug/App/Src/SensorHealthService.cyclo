@@ -1,0 +1,11 @@
+../App/Src/SensorHealthService.c:28:17:SensorHealth_GetTickSafe	2
+../App/Src/SensorHealthService.c:46:6:SensorHealth_Init	1
+../App/Src/SensorHealthService.c:65:6:SensorHealth_SetState	1
+../App/Src/SensorHealthService.c:80:6:SensorHealth_ReportSuccess	1
+../App/Src/SensorHealthService.c:101:6:SensorHealth_ReportError	1
+../App/Src/SensorHealthService.c:119:6:SensorHealth_ReportRetry	1
+../App/Src/SensorHealthService.c:135:6:SensorHealth_SetOffline	1
+../App/Src/SensorHealthService.c:147:10:SensorHealth_GetConsecutiveErrorCount	1
+../App/Src/SensorHealthService.c:163:6:SensorHealth_GetSnapshot	2
+../App/Src/SensorHealthService.c:187:13:SensorHealth_StateToString	6
+../App/Src/SensorHealthService.c:218:13:SensorHealth_ErrorToString	9

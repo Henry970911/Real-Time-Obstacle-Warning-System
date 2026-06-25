@@ -1,0 +1,4 @@
+../Platform/Src/UartStatusService.c:24:6:UartStatus_Init	4	static
+../Platform/Src/UartStatusService.c:44:6:UartStatus_OnRxEvent	16	static
+../Platform/Src/UartStatusService.c:62:6:UartStatus_AddOverflow	4	static
+../Platform/Src/UartStatusService.c:81:6:UartStatus_GetSnapshot	16	static

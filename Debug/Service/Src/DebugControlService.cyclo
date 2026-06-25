@@ -1,0 +1,4 @@
+../Service/Src/DebugControlService.c:25:6:DebugControl_Init	1
+../Service/Src/DebugControlService.c:42:6:DebugControl_SetLogEnable	2
+../Service/Src/DebugControlService.c:57:9:DebugControl_IsLogEnable	1
+../Service/Src/DebugControlService.c:74:6:DebugControl_GetSnapshot	2

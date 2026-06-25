@@ -1,0 +1,8 @@
+../App/Src/WarningConfigService.c:27:6:WarningConfig_Init	4	static
+../App/Src/WarningConfigService.c:39:6:WarningConfig_GetThresholdSnapshot	16	static
+../App/Src/WarningConfigService.c:51:10:WarningConfig_GetCautionEnterMm	4	static
+../App/Src/WarningConfigService.c:56:10:WarningConfig_GetCautionExitMm	4	static
+../App/Src/WarningConfigService.c:61:10:WarningConfig_GetWarningEnterMm	4	static
+../App/Src/WarningConfigService.c:66:10:WarningConfig_GetWarningExitMm	4	static
+../App/Src/WarningConfigService.c:71:10:WarningConfig_GetDangerEnterMm	4	static
+../App/Src/WarningConfigService.c:76:10:WarningConfig_GetDangerExitMm	4	static

@@ -1,0 +1,4 @@
+../Platform/Src/UartDma.c:28:6:UART_DMA_Init	1
+../Platform/Src/UartDma.c:42:9:UART_DMA_IsBusy	1
+../Platform/Src/UartDma.c:63:9:UART_DMA_Send	8
+../Platform/Src/UartDma.c:116:6:HAL_UART_TxCpltCallback	2

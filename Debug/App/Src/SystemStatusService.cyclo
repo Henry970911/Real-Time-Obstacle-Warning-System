@@ -1,0 +1,6 @@
+../App/Src/SystemStatusService.c:29:6:SystemStatus_Init	1
+../App/Src/SystemStatusService.c:53:6:SystemStatus_UpdateDistance	1
+../App/Src/SystemStatusService.c:78:6:SystemStatus_UpdateWarningLevel	1
+../App/Src/SystemStatusService.c:102:6:SystemStatus_UpdateBuzzerState	1
+../App/Src/SystemStatusService.c:128:6:SystemStatus_GetSnapshot	2
+../App/Src/SystemStatusService.c:155:13:SystemStatus_WarningLevelToString	5

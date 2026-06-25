@@ -1,0 +1,2 @@
+../Service/Src/QueueStatusService.c:30:6:QueueStatus_Register	1
+../Service/Src/QueueStatusService.c:56:6:QueueStatus_GetSnapshot	6
