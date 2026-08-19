@@ -36,8 +36,6 @@ This project implements an **RTOS-based embedded firmware system** on the **STM3
 
 ---
 
----
-
 ## Current Implementation Status / 目前實作狀態
 
 ### Implemented
@@ -58,76 +56,20 @@ This project implements an **RTOS-based embedded firmware system** on the **STM3
 
 ---
 
-## Firmware Classification / 韌體分類
-
-本專案屬於以下韌體分類：
-
-```text
-Embedded System / 嵌入式系統
-└── MCU Firmware / 微控制器韌體
-    └── RTOS-based Firmware / RTOS 韌體
-        └── STM32H7 Firmware
-            ├── Sensor Integration / 感測器整合
-            ├── Interrupt-driven Event Handling / 中斷事件處理
-            ├── FreeRTOS Task / Queue Architecture / RTOS 任務與佇列架構
-            ├── UART DMA Debug Interface / UART DMA 除錯介面
-            ├── CLI Runtime Diagnostics / CLI 即時診斷
-            ├── Error Handling / 錯誤處理
-            └── System Health Monitoring / 系統健康監控
-```
-
-也就是說：
-
-```text
-STM32H735G-DK = MCU platform / 微控制器平台
-VL53L1X       = Distance sensor / 距離感測器
-I2C4          = MCU 與 sensor 之間的通訊介面
-GPIO EXTI     = Sensor DataReady 中斷事件來源
-FreeRTOS      = RTOS task scheduling / 即時作業系統任務排程
-UART DMA      = Non-blocking debug interface / 非阻塞除錯通訊介面
-CLI           = Runtime diagnostics interface / 即時診斷介面
-```
-
-本專案可定位為：
-
-```text
-RTOS-based STM32 MCU firmware
-with sensor integration, interrupt handling,
-UART DMA diagnostics, CLI command system,
-runtime monitoring, and error recovery.
-```
-
----
-
 ## Key Features / 專案功能
 
-- STM32H735G-DK MCU firmware implementation
-- STM32CubeIDE project configuration
-- STM32 HAL GPIO / I2C / UART / DMA integration
-- VL53L1X ToF distance sensor integration
-- I2C4 read / write platform layer porting
-- VL53L1X XSHUT hardware reset control
-- GPIO EXTI interrupt handling for DataReady signal
-- FreeRTOS SensorTask / WarningTask / CommunicationTask design
+- STM32H735G-DK firmware with FreeRTOS / CMSIS-RTOS v2
+- VL53L1X ToF sensor integration through I2C4
+- GPIO EXTI DataReady interrupt handling
 - ISR-to-task event delivery through RTOS queue
-- Distance data transfer through RTOS queue
-- Four-level warning state decision
-- Hysteresis-based warning level stabilization
-- LED output control
-- Active buzzer output control
-- UART TX DMA debug transmission
-- UART RX DMA command reception
-- RX ring buffer implementation
-- Debug ring buffer implementation
-- CLI command parser and command handler
-- Sensor status diagnostics
-- Queue status diagnostics
-- UART status diagnostics
-- Task stack high water mark monitoring
-- Sensor health tracking
-- I2C error count and retry count
-- Sensor reconnect mechanism
-- Runtime system health snapshot
+- SensorTask / WarningTask / CommunicationTask architecture
+- UART TX DMA non-blocking debug output
+- UART RX DMA Receive-to-Idle CLI input
+- RX ring buffer and debug ring buffer
+- Four-level warning state with hysteresis
+- LED and active buzzer output
+- Sensor health monitoring and reconnect flow
+- Queue, UART, task stack and error diagnostics
 
 ---
 
@@ -896,7 +838,7 @@ CLI parser handles command
 | `sensor` | Show sensor state, distance, error count |
 | `queue` | Show RTOS queue usage |
 | `uart` | Show UART RX/TX statistics |
-| `threshold` | Show or configure warning thresholds |
+| `threshold` / `threshold show` | Show current warning thresholds |
 | `buzzer` | Test or configure buzzer behavior |
 | `log` | Configure debug log behavior |
 | `task` | Show task stack high water mark |
@@ -995,17 +937,17 @@ Exit WARNING above 550 mm
 
 ### Tracked Sensor Data
 
-| Item | Description |
+| Item | Source |
 |---|---|
-| Sensor state | Current sensor health state |
-| Last distance | Last valid distance value |
-| Last data tick | Last valid data timestamp |
-| Last retry tick | Last reconnect / retry timestamp |
-| I2C error count | Total I2C communication errors |
-| Retry count | Total retry attempts |
-| Consecutive error count | Continuous error counter |
-| DataReady event count | Number of EXTI events |
-| Reconnect state | Current reconnect status |
+| Sensor state | SensorHealthService |
+| Last error | SensorHealthService |
+| Error count | SensorHealthService |
+| Retry count | SensorHealthService |
+| Consecutive error count | SensorHealthService |
+| Last success tick | SensorHealthService |
+| Last error tick | SensorHealthService |
+| Last distance | SystemStatusService |
+| Reconnect counters | SystemHealthService |
 
 ### Sensor Health Flow
 
@@ -1114,15 +1056,15 @@ Read stack high water mark
 
 本專案透過 UartStatusService 記錄 UART RX/TX 狀態。
 
-### Monitored UART Data
+### UART Status Monitoring
 
-| Item | Description |
-|---|---|
-| RX callback count | Number of UART RX callbacks |
-| RX overflow count | RX ring buffer overflow count |
-| Last RX size | Last received data size |
-| TX busy state | UART TX DMA current busy state |
-| Debug output state | Debug ring buffer processing status |
+Currently monitored through CLI:
+
+- RX DMA callback count
+- Last RX size
+- RX ring buffer overflow count
+
+UART TX DMA busy state is handled internally by UartDma.
 
 ---
 
@@ -1349,9 +1291,6 @@ Run system
 ├── STM32H735IGKX_RAM.ld
 └── README.md
 ```
-
-> Note: The actual folder structure may vary depending on the STM32CubeIDE project configuration.
-
 ---
 
 ## Technical Highlights / 技術重點
@@ -1438,8 +1377,9 @@ Embedded System Debugging
 
 ```text
 Disable D-Cache
-→ UART output becomes normal
-→ Confirms DMA/cache coherency relationship
+→ UART output becomes normal.
+→ Confirms DMA/cache coherency relationship.
+→ In the current UART DMA path, TX buffers are cleaned before DMA transmission and RX DMA buffers are invalidated before CPU reads. 
 ```
 
 後續可改善方向：
@@ -1510,6 +1450,16 @@ error
 ```
 
 這使系統不需要重新燒錄 firmware，也能直接從 terminal 觀察內部狀態。
+
+---
+
+## Known Limitations / 已知限制
+
+- Hardware validation is currently manual and board-based.
+- `threshold` CLI command is read-only.
+- Task logic is still located in CubeMX-managed `freertos.c`.
+- Generated build output such as `Debug/` should be excluded from the repository.
+- Future work could move DMA buffers to a non-cacheable memory region.
 
 ---
 
