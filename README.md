@@ -1068,53 +1068,6 @@ UART TX DMA busy state is handled internally by UartDma.
 
 ---
 
-## Supported Firmware Modules / 支援的韌體模組
-
-### Core Service Modules
-
-```text
-Core/Service
-├── DebugService.c / DebugService.h
-├── UartDma.c / UartDma.h
-├── CliServices.c / CliServices.h
-├── UartStatusService.c / UartStatusService.h
-├── QueueStatusService.c / QueueStatusService.h
-├── SystemStatusService.c / SystemStatusService.h
-├── SensorHealthService.c / SensorHealthService.h
-├── SystemHealthService.c / SystemHealthService.h
-├── WarningConfigService.c / WarningConfigService.h
-├── TaskMonitorService.c / TaskMonitorService.h
-└── Buzzer_service.c / Buzzer_service.h
-```
-
-### VL53L1X Driver and Platform Modules
-
-```text
-VL53L1X
-├── VL53L1_platform.c
-├── VL53L1_platform.h
-├── VL53L1X_api.c
-├── VL53L1X_api.h
-├── VL53L1X_calibration.c
-├── VL53L1X_calibration.h
-└── vl53l1_types.h
-```
-
-### STM32Cube Generated Modules
-
-```text
-Core/Src
-├── main.c
-├── freertos.c
-├── gpio.c
-├── i2c.c
-├── usart.c
-├── dma.c
-└── stm32h7xx_it.c
-```
-
----
-
 ## Validation Tests / 驗證測試
 
 本專案包含多種功能驗證與壓力測試。
@@ -1250,7 +1203,7 @@ Run system
 │       ├── dma.c
 │       └── stm32h7xx_it.c
 │
-├── Services
+├── Service
 │   ├── DebugService
 │   ├── UartDma
 │   ├── CliServices
@@ -1274,48 +1227,10 @@ Run system
 ├── Middlewares
 │   └── FreeRTOS
 │
-├── Docs
-│   ├── architecture.md
-│   ├── test_plan.md
-│   ├── cli_commands.md
-│   └── troubleshooting.md
-│
-├── Images
-│   ├── system_architecture.png
-│   ├── task_flow.png
-│   ├── cli_demo.png
-│   └── hardware_setup.png
-│
-├── STM32H735G-DK_RTOS_Project.ioc
 ├── STM32H735IGKX_FLASH.ld
 ├── STM32H735IGKX_RAM.ld
 └── README.md
 ```
----
-
-## Technical Highlights / 技術重點
-
-- Implemented RTOS-based MCU firmware on STM32H735G-DK
-- Integrated VL53L1X ToF distance sensor through I2C4
-- Ported VL53L1X platform layer using STM32 HAL I2C APIs
-- Used GPIO EXTI interrupt for sensor DataReady event
-- Designed ISR-to-task event transfer through FreeRTOS queue
-- Implemented SensorTask, WarningTask, and CommunicationTask
-- Implemented UART TX DMA non-blocking debug output
-- Implemented UART RX DMA command input
-- Designed RX ring buffer for CLI input
-- Designed debug ring buffer for UART output
-- Implemented CLI parser and command handlers
-- Added runtime diagnostics for sensor, queue, UART, task, and system health
-- Implemented warning threshold and hysteresis logic
-- Integrated LED and active buzzer warning output
-- Added sensor health monitoring
-- Added I2C error count and retry count
-- Added sensor reconnect mechanism
-- Added task stack high water mark monitoring
-- Added queue and UART runtime status tracking
-- Improved firmware observability and debuggability
-
 ---
 
 ## Key Firmware Concepts / 對應的韌體觀念
