@@ -406,7 +406,7 @@ DebugService response
 | `sensor` | Show sensor status and last distance |
 | `queue` | Show RTOS queue usage |
 | `uart` | Show UART RX/TX status |
-| `threshold` | Show or configure warning thresholds |
+| `threshold` / `threshold show` | Show current warning thresholds |
 | `buzzer` | Test or configure buzzer behavior |
 | `log` | Configure debug log behavior |
 | `task` | Show task stack usage |
