@@ -10,35 +10,6 @@ This project implements an **RTOS-based embedded firmware system** on the **STM3
 
 此外，本專案也實作了 **UART DMA Debug System** 與 **CLI Runtime Diagnostics**，可在系統執行期間即時查詢 sensor、queue、UART、task stack、system health 與 error 狀態。
 
-專案內容包含：
-
-- STM32H735G-DK board bring-up
-- VL53L1X ToF distance sensor integration
-- I2C4 sensor communication
-- GPIO EXTI DataReady interrupt handling
-- VL53L1X XSHUT hardware reset control
-- FreeRTOS task / queue architecture
-- SensorTask distance acquisition
-- WarningTask warning level control
-- CommunicationTask UART / CLI handling
-- UART TX DMA non-blocking debug output
-- UART RX DMA receive handling
-- RX ring buffer implementation
-- Debug ring buffer implementation
-- CLI command parser
-- CLI command handler
-- LED warning output
-- Active buzzer warning output
-- Four-level warning state
-- Warning threshold and hysteresis logic
-- Sensor health monitoring
-- I2C error handling
-- Sensor reconnect mechanism
-- Queue status monitoring
-- UART status monitoring
-- Task stack high water mark monitoring
-- System health snapshot reporting
-
 此專案重點不是單純讀取感測器數值，而是理解並實作 **MCU 韌體系統中的周邊整合、RTOS 任務分工、中斷事件處理、非阻塞 Debug、CLI 診斷介面、錯誤處理與系統穩定性設計**。
 
 ---
@@ -62,6 +33,28 @@ This project implements an **RTOS-based embedded firmware system** on the **STM3
 | RTOS | FreeRTOS / CMSIS-RTOS v2 |
 | Development IDE | STM32CubeIDE |
 | Firmware Language | C |
+
+---
+
+---
+
+## Current Implementation Status / 目前實作狀態
+
+### Implemented
+
+- VL53L1X distance measurement through I2C4.
+- GPIO EXTI DataReady interrupt handoff to SensorTask.
+- FreeRTOS SensorTask, WarningTask and CommunicationTask.
+- UART TX DMA non-blocking debug output.
+- UART RX DMA CLI input.
+- CLI diagnostics for status, queue, uart, task, monitor and error.
+- Sensor health tracking and reconnect flow.
+
+### Intentionally Kept Limited
+
+- `threshold` command is currently read-only.
+- Task logic is still kept in CubeMX-generated `freertos.c`.
+- Validation is mainly board-level manual testing.
 
 ---
 
