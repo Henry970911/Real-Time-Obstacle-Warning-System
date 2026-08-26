@@ -18,9 +18,9 @@ This project implements an **RTOS-based embedded firmware system** on the **STM3
 
 | Item | Description |
 |---|---|
-| MCU Board | STM32H735G-DK |
-| MCU Family | STM32H7 Series |
-| CPU Core | ARM Cortex-M7 |
+| MCU Board  | STM32H735G-DK |
+| MCU Part   | STM32H735IGK6 |
+| CPU Core   | Arm® Cortex®-M7 |
 | Sensor | VL53L1X Time-of-Flight Distance Sensor |
 | Sensor Interface | I2C4 |
 | Sensor Interrupt | GPIO EXTI DataReady |
@@ -32,7 +32,7 @@ This project implements an **RTOS-based embedded firmware system** on the **STM3
 | Audio Output | Active buzzer module |
 | RTOS | FreeRTOS / CMSIS-RTOS v2 |
 | Development IDE | STM32CubeIDE |
-| Firmware Language | C |
+| Firmware Code | C |
 
 ---
 
